@@ -3,20 +3,6 @@ const response = await fetch('http://example.com/movies.json')
 return await response.json()
 }*/
 
-class Pokemon {
-    constructor(id, name) {
-        this.id = id
-        this.name = name
-    }
-}
-
-const Natemon = new Pokemon(900, 'Natemon')
-
-
-
-
-
-
 
 
 async function getAPIData(url) {
@@ -34,10 +20,8 @@ const theData = getAPIData('https://pokeapi.co/api/v2/pokemon/').then(data => {
     for (const pokemon of data.results) {
         getAPIData(pokemon.url).then(pokedata => {
             populateDOM(pokedata)
-            populateDOM(Natemon)
         })
     }
-    populateDOM(Natemon)
 })
 
 let mainArea = document.querySelector('main')
@@ -59,20 +43,12 @@ function populateDOM(single_pokemon) {
 
     mainArea.appendChild(pokeScene)
 
-    pokeCard.addEventListener('click', function() {
-        pokeCard.setAttribute('class','card')
-        pokeCard.appendChild(pokeFront)
-        pokeCard.appendChild(pokeBack)
-        pokeScene.appendChild(pokeCard)
-
-        mainArea.appendChild(pokeScene)
-
         pokeCard.addEventListener('click', function() {
             pokeCard.classList.toggle('is-flipped')
     })
 }
 
-function fillCardBack(pokeFront, data) {
+function fillCardFront(pokeFront, data) {
     pokeFront.setAttribute('class', 'card__face card__face--front')
     let name = document.createElement('p')
     let pic = document.createElement('img')
@@ -80,7 +56,7 @@ function fillCardBack(pokeFront, data) {
     let pokeNum = getPokeNumber(data.id)
     pokeFront.appendChild(name)
 
-    pic.src = `../images/${pokeNum}.png`
+    pic.src = `../pics/${pokeNum}.png`
 
     pokeFront.appendChild(pic)
     pokeFront.appendChild(name)
@@ -90,10 +66,20 @@ function fillCardBack(pokeBack, data) {
     pokeBack.setAttribute('class','card__face card__face--back')
     let pokeOrder = document.createElement('p')
     let pokeHP = document.createElement('h5')
-    pokeOrder.textContent = `#${data.id} ${data.name[0].toUpperCase()}${data.name.slice(1)}`
-    pokeHP.textContent = data.stats[0].base_stat
+    pokeOrder.textContent = data.order
+    //pokeHP.textContent = data.stats[0].base_stat
     pokeBack.appendChild(pokeOrder)
     pokeBack.appendChild(pokeHP)
+}
+
+function getPokeNumber(charURL) {
+    let end = charURL.lastIndexOf('/')
+    let charID = charURL.substring(end - 2, end)
+    if (charID.indexOf('/') !== -1) {
+    return `00${charID.slice(1, 2)}`
+    } else {
+        return `0${charID}`
+    }
 }
 
 
@@ -102,3 +88,12 @@ function fillCardBack(pokeBack, data) {
 
 
 
+
+
+
+
+
+
+
+
+//pokeOrder.textContent = `#${data.id} ${data.name[0].toUpperCase()}${data.name.slice(1)}
