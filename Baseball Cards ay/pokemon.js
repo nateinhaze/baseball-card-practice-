@@ -4,7 +4,7 @@ return await response.json()
 }*/
 
 
-
+//POKEMON API//
 async function getAPIData(url) {
     try {
         const response = await fetch(url)
@@ -15,7 +15,7 @@ async function getAPIData(url) {
         console.error(error)
     }
 }
-
+//Getting The DATA!
 const theData = getAPIData('https://pokeapi.co/api/v2/pokemon/').then(data => {
     for (const pokemon of data.results) {
         getAPIData(pokemon.url).then(pokedata => {
@@ -24,14 +24,17 @@ const theData = getAPIData('https://pokeapi.co/api/v2/pokemon/').then(data => {
     }
 })
 
+//Using Main as document
 let mainArea = document.querySelector('main')
 
+//Populating the DOM
 function populateDOM(single_pokemon) {
     let pokeScene = document.createElement('div')
     let pokeCard = document.createElement('div')
     let pokeFront = document.createElement('div')
     let pokeBack = document.createElement('div')
 
+    //Card Front and Back as Single Pokemon
     fillCardFront(pokeFront, single_pokemon)
     fillCardBack(pokeBack, single_pokemon)
 
@@ -47,7 +50,7 @@ function populateDOM(single_pokemon) {
             pokeCard.classList.toggle('is-flipped')
     })
 }
-
+//Front of the CARD!
 function fillCardFront(pokeFront, data) {
     pokeFront.setAttribute('class', 'card__face card__face--front')
     let name = document.createElement('p')
@@ -56,12 +59,13 @@ function fillCardFront(pokeFront, data) {
     let pokeNum = getPokeNumber(data.id)
     pokeFront.appendChild(name)
 
-    pic.src = `../pics/${pokeNum}.png`
+    //Pictures from png for now
+    pic.src = `./pics/${pokeNum}.png`
 
     pokeFront.appendChild(pic)
     pokeFront.appendChild(name)
 }
-
+//Back of the CARD!
 function fillCardBack(pokeBack, data) {
     pokeBack.setAttribute('class','card__face card__face--back')
     let pokeOrder = document.createElement('p')
@@ -72,6 +76,7 @@ function fillCardBack(pokeBack, data) {
     pokeBack.appendChild(pokeHP)
 }
 
+//Getting the right pokemon #
 function getPokeNumber(charURL) {
     let end = charURL.lastIndexOf('/')
     let charID = charURL.substring(end - 2, end)
