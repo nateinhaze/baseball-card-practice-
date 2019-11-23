@@ -19,16 +19,24 @@ async function getAPIData(url) {
 const theData = getAPIData('https://pokeapi.co/api/v2/pokemon/').then(data => {
     for (const pokemon of data.results) {
         getAPIData(pokemon.url).then(pokedata => {
-            populateDOM(pokedata)
+            populateDOM(pokedata, false)
         })
     }
 })
 
+//Javafunction for new pokemon
+function addPoke() {
+    var X=Math.floor((Math.random() * 130) + 20);
+    var pokeURL = "https://pokeapi.co/api/v2/pokemon/"+X+"/"
+    getAPIData(pokeURL).then(pokedata => {
+        populateDOM(pokedata, true)
+    })
+}
 //Using Main as document
 let mainArea = document.querySelector('main')
 
 //Populating the DOM
-function populateDOM(single_pokemon) {
+function populateDOM(single_pokemon, addBefore) {
     let pokeScene = document.createElement('div')
     let pokeCard = document.createElement('div')
     let pokeFront = document.createElement('div')
@@ -44,7 +52,15 @@ function populateDOM(single_pokemon) {
     pokeCard.appendChild(pokeBack)
     pokeScene.appendChild(pokeCard)
 
-    mainArea.appendChild(pokeScene)
+    //mainArea.appendChild(pokeScene)
+    if(addBefore == true)
+    {
+        mainArea.prepend(pokeScene)
+    }
+    else
+    {
+        mainArea.appendChild(pokeScene)
+    }
 
         pokeCard.addEventListener('click', function() {
             pokeCard.classList.toggle('is-flipped')
