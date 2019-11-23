@@ -52,7 +52,7 @@ div.bot{
 
 }
 
-button{
+button.new{
     height: 50px;
     background-color: #ffcb05;
     color: #3d7dca;
@@ -69,12 +69,15 @@ button{
 
 main{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(199px, 1fr));
     grid-gap: 2rem;
     width: 100%;
     max-width: 1280px;
     margin: 0 auto;
     margin-bottom: 6rem;
+    padding-left: 10px;
+    
+    
 }
 
 .picDivs{
@@ -103,13 +106,16 @@ main{
     text-align: center;
     font-weight: bold;
     font-size: 40px;
+    border-radius: 5%;
 }
 .scene {
     width: 200px;
     height: 260px;
-    border: 1px solid rgb(187, 1, 1);
+    border: 10px solid #ffcb05;
     margin: 40px 0;
     perspective: 600px;
+    border-radius: 10%;
+
   }
   
   .card {
@@ -119,8 +125,29 @@ main{
     transform-style: preserve-3d;
     cursor: pointer;
     position: relative;
+    
   }
   
   .card.is-flipped {
     transform: rotateY(180deg);
   }
+
+footer{
+    background-color:#cc0000;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+}
+.feet{
+width: 50%;
+height: 30px;
+background-color: #ffcb05;
+display: flex;
+flex-direction: column;
+justify-content:center;
+align-items: center;
+
+
+}
