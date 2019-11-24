@@ -2,6 +2,7 @@ body{
     padding: 0;
     margin: 0;
     background-color:#3d7dca;
+    
 }
 
 div.top{
@@ -68,6 +69,7 @@ button.new{
 
 
 main{
+    
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(199px, 1fr));
     grid-gap: 2rem;
@@ -75,7 +77,9 @@ main{
     max-width: 1280px;
     margin: 0 auto;
     margin-bottom: 6rem;
-    padding-left: 10px;
+    
+    
+
     
     
 }
@@ -92,6 +96,7 @@ main{
 }
 .card__face--front{
     background-color: white;
+    
 }
 .card__face--back{
     background: #cc0000;
@@ -134,21 +139,26 @@ main{
 
 footer{
     background-color:#cc0000;
-    height: 50px;
+    height: 70px;
     display: flex;
     flex-direction: column;
     justify-content:center;
     align-items: center;
+
 }
 .feet{
-width: 50%;
+width: 40%;
 height: 30px;
 background-color: #ffcb05;
 display: flex;
 flex-direction: column;
 justify-content:center;
 align-items: center;
-
+border-radius: 25%;
+font-family: 'Varela Round', sans-serif;
+color:#3d7dca;
+font-weight: bold;
+border: solid 2px #3d7dca;
 
 }
 p.pokemon-name {
@@ -157,4 +167,10 @@ p.pokemon-name {
     font-family: 'Varela Round', sans-serif;
     text-transform: capitalize;
     
+}
+div.botline{
+    width: 100%;
+    background-color: #3d7dca;
+    height: 5px;
+    border-top: solid 5px #cc0000;
 }
