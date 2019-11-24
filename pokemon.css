@@ -174,3 +174,7 @@ div.botline{
     height: 5px;
     border-top: solid 5px #cc0000;
 }
+div.cool{
+    margin-left:10%;
+    margin-right:10%;
+}

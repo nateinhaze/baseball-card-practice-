@@ -24,10 +24,10 @@ const theData = getAPIData('https://pokeapi.co/api/v2/pokemon/').then(data => {
     }
 })
 
-//Javafunction for new pokemon
+//Javafunction for new pokemon - random pokemon generator
 function addPoke() {
-    var X=Math.floor((Math.random() * 130) + 20);
-    var pokeURL = "https://pokeapi.co/api/v2/pokemon/"+X+"/"
+    var X = Math.floor((Math.random() * 130) + 20);
+    var pokeURL = "https://pokeapi.co/api/v2/pokemon/" + X + "/"
     getAPIData(pokeURL).then(pokedata => {
         populateDOM(pokedata, true)
     })
@@ -53,17 +53,15 @@ function populateDOM(single_pokemon, addBefore) {
     pokeScene.appendChild(pokeCard)
 
     //mainArea.appendChild(pokeScene)
-    if(addBefore == true)
-    {
+    if (addBefore == true) {
         mainArea.prepend(pokeScene)
     }
-    else
-    {
+    else {
         mainArea.appendChild(pokeScene)
     }
 
-        pokeCard.addEventListener('click', function() {
-            pokeCard.classList.toggle('is-flipped')
+    pokeCard.addEventListener('click', function () {
+        pokeCard.classList.toggle('is-flipped')
     })
 }
 //Front of the CARD!
@@ -73,9 +71,9 @@ function fillCardFront(pokeFront, data) {
     pokeName.setAttribute('class', 'pokemon-name')
     let pic = document.createElement('img')
     pic.setAttribute('class', 'picDivs')
-   let pokeNum = data.id
+    let pokeNum = data.id
     // let pokeNum = getPokeNumber(data.id)
-    
+
     //Pictures from png for now
     pic.src = data.sprites.front_default
     pokeName.textContent = data.forms[0].name
@@ -85,12 +83,12 @@ function fillCardFront(pokeFront, data) {
 }
 //Back of the CARD!
 function fillCardBack(pokeBack, data) {
-    pokeBack.setAttribute('class','card__face card__face--back')
+    pokeBack.setAttribute('class', 'card__face card__face--back')
     let pokeOrder = document.createElement('p')
     let pokeHP = document.createElement('h5')
     pokeOrder.textContent = data.order
-    
-    pokeHP.textContent ="HP:"+ data.stats[5].base_stat
+
+    pokeHP.textContent = "HP:" + data.stats[5].base_stat
     pokeBack.appendChild(pokeOrder)
     pokeBack.appendChild(pokeHP)
 }
@@ -100,7 +98,7 @@ function getPokeNumber(charURL) {
     let end = charURL.lastIndexOf('/')
     let charID = charURL.substring(end - 2, end)
     if (charID.indexOf('/') !== -1) {
-    return `00${charID.slice(1, 2)}`
+        return `00${charID.slice(1, 2)}`
     } else {
         return `0${charID}`
     }
